@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculatorComponent implements OnInit {
   firstValue: number;
-  display: string = '0';
+  display: string = '';
   action: string;
   constructor() { }
   ngOnInit(): void {
   }
   dis(val: string){
-      this.display = val;
+      this.display  += val;
   }
   oper(action){
     this.action = action;
@@ -41,6 +41,6 @@ export class CalculatorComponent implements OnInit {
   }
   clr(){
     this.firstValue = 0;
-    this.display = '0';
+    this.display = ' ';
   }
 }
