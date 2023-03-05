@@ -37,7 +37,6 @@ nav .menu a {
   text-decoration: none;
   color: white;
   font-weight: bold;
-  font-size: 14px;
 }
 
 nav .search {
@@ -63,4 +62,21 @@ nav .search button[type="submit"] {
 
 nav .search button[type="submit"]:hover {
   background-color: #27ae60;
+}
+.dropdown-menu{
+  background: #046056;
+}
+.nav-item{
+  margin-bottom: 10px;
+}
+.nav-item .nav-link{
+  padding:0px;
+}
+
+.dropdown-menu li a{
+  color: white ;
+}
+.dropdown-menu li a:hover{
+  background: lightblue;color: black ;
+
 }

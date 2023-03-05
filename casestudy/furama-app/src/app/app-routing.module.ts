@@ -7,8 +7,6 @@ import {ListServiceComponent} from "./furama/service-furama/list-service/list-se
 
 
 const routes: Routes = [
-  {path:"customer", component:ListCustomerComponent},
-  {path:"service",component:ListServiceComponent}
 ];
 
 @NgModule({

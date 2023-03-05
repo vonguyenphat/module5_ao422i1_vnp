@@ -7,8 +7,10 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ListServiceComponent } from './furama/service-furama/list-service/list-service.component';
 import { ListCustomerComponent } from './furama/customer-furama/list-customer/list-customer.component';
 import { HeaderAdminComponent } from './layout/header-admin/header-admin.component';
-
-
+import { HomeComponent } from './furama-client/home/home.component';
+import { ServiceFuramaClinetComponent } from './furama-client/service-furama-clinet/service-furama-clinet.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,10 +19,15 @@ import { HeaderAdminComponent } from './layout/header-admin/header-admin.compone
     ListServiceComponent,
     ListCustomerComponent,
     HeaderAdminComponent,
+    HomeComponent,
+    ServiceFuramaClinetComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
