@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {ServiceFurama} from "../../model/service-furama/serviceFurama";
-import {RentType} from "../../model/service-furama/rentType";
 
 @Injectable({
   providedIn: 'root'
@@ -47,20 +46,25 @@ export class ServiceFuramaServiceService {
       area: 100,
       cost: 100,
       peopleMax: 5,
-      rentType: {id: 1, name: 'năm'},
+      rentType: {
+        id: 1, name: 'năm'},
       serviceType: {id: 1, name: 'Phòng riêng'},
       serviceDiv: {id: 1, name: 'karaoke'}
     }
   ];
-  getAllSerive(){
+
+  getAllSerive() {
     return this.serviceFuramas;
   }
+
   saveService(service) {
     this.serviceFuramas.push(service);
   }
-  findById(id: number) {
-    return this.serviceFuramas.find(service => service.id === id);
+
+  findById(id: number): any {
+    return this.serviceFuramas.find(item => item.id === id);
   }
+
   updateProduct(id: number, service: ServiceFurama) {
     for (let i = 0; i < this.serviceFuramas.length; i++) {
       if (this.serviceFuramas[i].id === id) {
@@ -68,9 +72,18 @@ export class ServiceFuramaServiceService {
       }
     }
   }
+
   deleteProduct(id: number) {
     this.serviceFuramas = this.serviceFuramas.filter(service => {
       return service.id !== id;
     });
+
+  }
+
+  deleteServiceById(id: number) {
+    const index = this.serviceFuramas.findIndex(item => item.id === id);
+    if (index !== -1) {
+      this.serviceFuramas.splice(index, 1);
+    }
   }
 }

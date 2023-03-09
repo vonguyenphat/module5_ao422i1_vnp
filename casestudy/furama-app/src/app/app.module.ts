@@ -9,8 +9,10 @@ import { ListCustomerComponent } from './furama/customer-furama/list-customer/li
 import { HeaderAdminComponent } from './layout/header-admin/header-admin.component';
 import { HomeComponent } from './furama-client/home/home.component';
 import { ServiceFuramaClinetComponent } from './furama-client/service-furama-clinet/service-furama-clinet.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DeleteProductModalComponentComponent } from './furama/service-furama/delete-product-modal-component/delete-product-modal-component.component';
+import { EditServiceModalComponentComponent } from './furama/service-furama/edit-service-modal-component/edit-service-modal-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,8 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     HeaderAdminComponent,
     HomeComponent,
     ServiceFuramaClinetComponent,
+    DeleteProductModalComponentComponent,
+    EditServiceModalComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,8 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

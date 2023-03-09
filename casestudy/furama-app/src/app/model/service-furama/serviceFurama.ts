@@ -13,7 +13,6 @@ export interface ServiceFurama {
   descriptionOtherConvenience?:string;
   areaPool?: number;
   numberOfFloors?: number;
-  freeService?: string;
   rentType?: RentType;
   serviceType?:ServiceType;
   serviceDiv?:DivService;

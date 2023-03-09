@@ -70,6 +70,27 @@ form .form-select{
   float: left;
 }
 .container-table{
-  width: autopx;
+  width: auto;
+}
+
+.input-modal-addNew{
+  width: 80%;
+}
+.tilte-input-modal-addNew{
+  font-size: 16px;
+  color: darkblue;
+}
+.div-select-modal-addNew .select-modal-addNew{
+  margin-left:0;
+}
+.errormessage{
+  color: red;
+}
+.btn-modal-add-new{
+  margin-top: 20px;
+}
+.btn-modal-add-new button {
+  margin: 0 5px 0 5px;
+  float: right;
 }
 

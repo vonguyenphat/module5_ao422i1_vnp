@@ -12,15 +12,15 @@ export class RentypeServiceService {
   rentTypes: RentType[] = [
     {
       id: 1,
-      name: 'Villa'
+      name: 'Ngày'
     },
     {
       id:2,
-      name:'house'
+      name:'Tháng'
     },
     {
       id:3,
-      name:'Phòng riêng'
+      name:'Năm'
     }
   ];
 
