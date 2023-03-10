@@ -93,4 +93,12 @@ form .form-select{
   margin: 0 5px 0 5px;
   float: right;
 }
+@import '~ngx-toastr/toastr';
+@import '~ngx-toastr/toastr-bs4-alert.scss';
+@import '~ngx-toastr/toastr-old.css';
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+@import '~bootstrap/scss/mixins';
+
+
 

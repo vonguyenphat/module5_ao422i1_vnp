@@ -12,6 +12,7 @@ import {DivService} from "../../../model/service-furama/divService";
 import {DeleteProductModalComponentComponent} from "../delete-product-modal-component/delete-product-modal-component.component";
 import {EditServiceModalComponentComponent} from "../edit-service-modal-component/edit-service-modal-component.component";
 
+
 @Component({
   selector: 'app-list-service',
   templateUrl: './list-service.component.html',
@@ -50,11 +51,6 @@ export class ListServiceComponent implements OnInit {
     modalRef.result.then(
       () => {
         this.serviceFurama.deleteServiceById(id);
-        this.typeAlert = 'success';
-        this.messageAlert = 'Xóa dịch vụ thành công';
-        setTimeout(()=>{
-          this.typeAlert = null;
-        },5000)
       },
       () => {
         // Xử lý khi hủy xóa sản phẩm
@@ -83,6 +79,7 @@ export class ListServiceComponent implements OnInit {
     console.log(this.serviceFuramaForm);
     if (this.serviceFuramaForm.valid) {
       this.serviceFurama.saveService(this.serviceFuramaForm.value);
+      this.modalService.dismissAll();
     } else {
       alert("Thêm mới thất bại")
     }
@@ -139,11 +136,15 @@ export class ListServiceComponent implements OnInit {
     // console.log(this.serviceFuramaFind);
     const modalRef = this.modalService.open(EditServiceModalComponentComponent);
     modalRef.componentInstance.id = id;
-    // modalRef.componentInstance.typeServices = this.typeServices;
-    // modalRef.componentInstance.rentTypes = this.rentTypes;
-    // modalRef.componentInstance.divTypeServices = this.divTypeServices;
+    modalRef.componentInstance.typeServices = this.typeServices;
+    modalRef.componentInstance.rentTypes = this.rentTypes;
+    modalRef.componentInstance.divTypeServices = this.divTypeServices;
     console.log(typeof id);
     console.log(id);
     // modalRef.componentInstance.id = id;
+  }
+
+  dimiss() {
+    this.modalService.dismissAll();
   }
 }

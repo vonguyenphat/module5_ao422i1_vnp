@@ -15,13 +15,13 @@ import {ServiceFuramaServiceService} from "../../../service/service-furama/servi
   styleUrls: ['./edit-service-modal-component.component.css'],
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">{{id}}</h4>
+      <h4 class="modal-title">Chỉnh sữa dịch vụ</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="serviceFuramaForm" *ngIf="serviceFuramaForm">
+      <form [formGroup]="serviceFuramaForm">
         <div class="row">
           <div class="col-6">
             <label class="tilte-input-modal-addNew">ID dịch vụ: </label>
@@ -42,7 +42,7 @@ import {ServiceFuramaServiceService} from "../../../service/service-furama/servi
             <label class="tilte-input-modal-addNew">Loại dịch vụ: </label><br>
             <select class="form-select select-modal-addNew" formControlName="serviceType">
               <option selected *ngFor="let item of typeServices"
-                      [value]="item">{{item.name}}</option>
+                      [ngValue]="item">{{item.name}}</option>
             </select><br><br>
             <span class="errormessage"
                   *ngIf="serviceFuramaForm.controls.serviceType.hasError('required') && serviceFuramaForm.controls.serviceType.touched">
@@ -56,7 +56,7 @@ import {ServiceFuramaServiceService} from "../../../service/service-furama/servi
           <div class="col-6 div-select-modal-addNew">
             <label class="tilte-input-modal-addNew"> Kiểu thuê:</label><br>
             <select class="form-select select-modal-addNew " formControlName="rentType">
-              <option *ngFor="let item of rentTypes" [value]="item">{{item.name}}</option>
+              <option *ngFor="let item of rentTypes" [ngValue]="item"> {{item.name}}</option>
             </select>
           </div>
           <div class="col-6">
@@ -82,19 +82,19 @@ import {ServiceFuramaServiceService} from "../../../service/service-furama/servi
           <div class="col-6 div-select-modal-addNew">
             <label class="tilte-input-modal-addNew"> Dịch vụ miến phí đi kèm:</label><br>
             <select class="form-select select-modal-addNew " formControlName="serviceDiv">
-              <option selected *ngFor="let item of divTypeServices" [value]="item">{{item.name}}</option>
+              <option selected *ngFor="let item of divTypeServices" [ngValue]="item">{{item.name}}</option>
             </select>
           </div>
           <div class="col-6">
             <label class="tilte-input-modal-addNew">Hình ảnh dịch vụ: </label>
-            <input type="file" class="form-control input-modal-addNew" formControlName="image">
+            <input type="file" class="form-control input-modal-addNew">
           </div>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Hủy</button>
-      <button type="button" class="btn btn-primary" (click)="onSubmit()">Lưu</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">Cancel</button>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Update</button>
     </div>
   `,
 })
@@ -110,24 +110,8 @@ export class EditServiceModalComponentComponent implements OnInit {
               private fb: FormBuilder,
               private typeService: ServiceTypeServiceService,
               private rentTypeService: RentypeServiceService,
-              private divService: ServiceDivServiceService,
+              public divService: ServiceDivServiceService,
               private serviceFurama: ServiceFuramaServiceService) {
-    // this.serviceFuramaForm = new FormGroup({
-    //   id: new FormControl('', [Validators.required]),
-    //   name: new FormControl('',),
-    //   image: new FormControl('',),
-    //   area: new FormControl('',),
-    //   cost: new FormControl('',),
-    //   peopleMax: new FormControl('',),
-    //   standardRoom: new FormControl('',),
-    //   descriptionOtherConvenience: new FormControl('',),
-    //   areaPool: new FormControl('',),
-    //   numberOfFloors: new FormControl('',),
-    //   rentType: new FormControl('',),
-    //   serviceType: new FormControl('', [Validators.required]),
-    //   serviceDiv: new FormControl('',),
-    // });
-
   }
 
   createForm(): void {
@@ -148,19 +132,20 @@ export class EditServiceModalComponentComponent implements OnInit {
       descriptionOtherConvenience: new FormControl(this.service.descriptionOtherConvenience,),
       areaPool: new FormControl(this.service.areaPool,),
       numberOfFloors: new FormControl(this.service.numberOfFloors,),
-      rentType: new FormControl(this.service.rentType,),
+      rentType:[this.service.rentType],
       serviceType: new FormControl(this.service.serviceType, [Validators.required]),
       serviceDiv: new FormControl(this.service.serviceDiv,)
     });
   }
 
   onSubmit() {
-    // if (this.serviceFuramaForm.valid) {
-    //   this.serviceFurama.updateProduct(sid, this.serviceFuramaForm.value);
-    //   alert("Cặp nhật thsng công")
-    // } else {
-    //   alert("Cặp nhật thất bại")
-    // }
+    if (this.serviceFuramaForm.valid) {
+      this.activeModal.dismiss('cancel')
+      this.serviceFurama.updateProduct(this.serviceFuramaForm.value.id,this.serviceFuramaForm.value);
+      alert("Cặp nhật thsng công")
+    } else {
+      alert("Cặp nhật thất bại")
+    }
 
   }
 
