@@ -25,7 +25,7 @@ import {ServiceFuramaServiceService} from "../../../service/service-furama/servi
         <div class="row">
           <div class="col-6">
             <label class="tilte-input-modal-addNew">ID dịch vụ: </label>
-            <input type="text" class="form-control input-modal-addNew" formControlName="id">
+            <input type="text" class="form-control input-modal-addNew" formControlName="id" disabled>
             <span class="errormessage"
                   *ngIf="serviceFuramaForm.controls.id.hasError('required') && serviceFuramaForm.controls.id.touched">
             *Vui lòng nhập id dịch vụ</span>
@@ -40,7 +40,7 @@ import {ServiceFuramaServiceService} from "../../../service/service-furama/servi
           </div>
           <div class="col-6 div-select-modal-addNew">
             <label class="tilte-input-modal-addNew">Loại dịch vụ: </label><br>
-            <select class="form-select select-modal-addNew" formControlName="serviceType">
+            <select class="form-select select-modal-addNew" formControlName="serviceType" [compareWith]="compareWith" >
               <option selected *ngFor="let item of typeServices"
                       [ngValue]="item">{{item.name}}</option>
             </select><br><br>
@@ -140,13 +140,16 @@ export class EditServiceModalComponentComponent implements OnInit {
 
   onSubmit() {
     if (this.serviceFuramaForm.valid) {
-      this.activeModal.dismiss('cancel')
       this.serviceFurama.updateProduct(this.serviceFuramaForm.value.id,this.serviceFuramaForm.value);
+      this.activeModal.dismiss();
       alert("Cặp nhật thsng công")
     } else {
       alert("Cặp nhật thất bại")
     }
 
+  }
+  public compareWith(object1: any, object2: any) {
+    return object1 && object2 && object1.label === object2.label;
   }
 
 }
