@@ -1,6 +1,5 @@
 <form class="register-form" [formGroup]="productForm"  (ngSubmit)="submitProduct()">
   <h2>Thêm mới sản phẩm</h2>
-
   <label>ID Sản phẩm:</label>
   <input type="text" formControlName="id">
   <p style="color: red" *ngIf="productForm.controls.id.hasError('required')&&productForm.controls.id.touched">
@@ -10,6 +9,13 @@
   <input type="text" formControlName="name" >
   <p style="color: red" *ngIf="productForm.controls.name.hasError('required')&&productForm.controls.name.touched">
     *Tên sản phẩm không được để trống
+  </p>
+  <label >Loại sản phẩm:</label>
+  <select formControlName="category">
+    <option *ngFor="let item of categorys" [ngValue]="item">{{item.name}}</option>
+  </select>
+  <p style="color: red" *ngIf="productForm.controls.category.hasError('required')&&productForm.controls.category.touched">
+    *Vui lòng nhập loại sản phẩm
   </p>
   <label >Giá sản phẩm:</label>
   <input type="number" formControlName="price">

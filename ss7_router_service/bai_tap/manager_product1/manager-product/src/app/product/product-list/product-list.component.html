@@ -32,9 +32,9 @@
       <thead>
       <tr >
         <th>STT</th>
-        <th>ID Sản phẩm</th>
         <th>Tên</th>
         <th>Giá</th>
+        <th>Loại</th>
         <th>Mô tả</th>
         <th>Actions</th>
       </tr>
@@ -42,9 +42,9 @@
       <tbody>
       <tr *ngFor="let item of products; index as i">
         <td>{{i +1}}</td>
-        <td>{{item.id}}</td>
         <td>{{item.name}}</td>
         <td>{{item.price}}</td>
+        <td>{{item.category.name}}</td>
         <td>{{item.description}}</td>
         <td class="td-action">
           <button class="btn btn-info" >
@@ -53,9 +53,9 @@
           <button class="btn btn-warning" [routerLink]="['/product/update',item.id]">
             edit
           </button>
-          <button class="btn btn-danger" [routerLink]="['/product/delete',item.id]">
+          <a class="btn btn-danger" [routerLink]="['/product/delete',item.id]">
             Delete
-          </button>
+          </a>
         </td>
       </tbody>
     </table>

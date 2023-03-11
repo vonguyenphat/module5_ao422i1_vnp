@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../service/product.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {Category} from "../../model/category";
+import {CategoryService} from "../../service/service-categoty/category.service";
 
 @Component({
   selector: 'app-product-create',
@@ -10,22 +12,40 @@ import {Router} from "@angular/router";
 })
 export class ProductCreateComponent implements OnInit {
   productForm: FormGroup;
-  constructor(private productService:ProductService,private fb: FormBuilder,private router:Router) { }
+  categorys: Category[] = [];
+
+  constructor(private productService: ProductService, private fb: FormBuilder, private router: Router, private categoryService: CategoryService) {
+    this.categoryService.getAllCategory().subscribe(next => {
+        this.categorys = next;
+      }, error => {
+      },
+      () => {
+      })
+  }
+
   ngOnInit(): void {
     this.productForm = this.fb.group({
-      id: new FormControl('',[Validators.required]),
-      name: new FormControl('',[Validators.required]),
-      price: new FormControl('',[Validators.required,Validators.min(1000)]),
-      description: new FormControl('',[Validators.required])
+      id: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.min(1000)]),
+      description: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required])
     });
   }
-  submitProduct(){
+
+  submitProduct() {
     console.log(this.productForm);
     if (!this.productForm.valid) {
-    }else {
-      this.productService.saveProduct(this.productForm.value);
-      this.router.navigateByUrl("/product/list");
-    };
+    } else {
+      this.productService.saveProduct(this.productForm.value).subscribe(next => {
+          this.router.navigateByUrl("/product/list");
+        }, error => {
+          console.log("Error fail")
+        },
+        () => {
+        })
+    }
+    ;
   }
 
 }

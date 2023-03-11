@@ -8,6 +8,7 @@ import {ProductListComponent} from "./product/product-list/product-list.componen
 import {ProductDeleteComponent} from "./product/product-delete/product-delete.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { ProductUpdateComponent } from './product/product-update/product-update.
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
