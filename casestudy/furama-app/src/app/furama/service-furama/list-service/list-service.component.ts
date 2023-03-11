@@ -55,7 +55,6 @@ export class ListServiceComponent implements OnInit {
       () => {
         // Xử lý khi hủy xóa sản phẩm
       });
-
   }
 
 
